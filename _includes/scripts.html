@@ -1,0 +1,130 @@
+<!-- Scripts -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="{{ "/js/jquery.scrollex.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/jquery.scrolly.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/skel.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/util.js" | prepend: site.baseurl }}"></script>
+<!--[if lte IE 8]><script src="{{ "/js/ie/respond.min.js" | prepend: site.baseurl }}"></script><![endif]-->
+<script src="{{ "/js/main.js" | prepend: site.baseurl }}"></script>
+{% if page.title contains 'Gallery' %}
+<!--<script src="{{ "/js/lightgallery.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/lg-thumbnail.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/lg-zoom.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript">
+$('#fixed-size').lightGallery({
+    width: '720px',
+    height: '1280px',
+    mode: 'lg-zoom',
+    addClass: 'fixed-size',
+    counter: true,
+    download: false,
+    startClass: '',
+    enableSwipe: true,
+    enableDrag: true,
+    speed: 500
+});
+</script> -->
+<script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/js/ekko.js" | prepend: site.baseurl }}"></script>
+<script>
+    
+            $(document).ready(function ($) {
+
+                // delegate calls to data-toggle="lightbox"
+                $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+                    event.preventDefault();
+                    return $(this).ekkoLightbox({
+                        onShown: function() {
+                            if (window.console) {
+                                return console.log('onShown event fired');
+                            }
+                        },
+                        onContentLoaded: function() {
+                            if (window.console) {
+                                return console.log('onContentLoaded event fired');
+                            }
+                        },
+                        onNavigate: function(direction, itemIndex) {
+                            if (window.console) {
+                                return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+                            }
+                        }
+                    });
+                });
+
+                //Programatically call
+                $('#open-image').click(function (e) {
+                    e.preventDefault();
+                    $(this).ekkoLightbox();
+                });
+                $('#open-youtube').click(function (e) {
+                    e.preventDefault();
+                    $(this).ekkoLightbox();
+                });
+
+                $(document).delegate('*[data-gallery="navigateTo"]', 'click', function(event) {
+                    event.preventDefault();
+                    return $(this).ekkoLightbox({
+                        onShown: function() {
+                            var lb = this;
+                            $(lb.modal_content).on('click', '.modal-footer a#jumpit', function(e) {
+                                e.preventDefault();
+                                lb.navigateTo(2);
+                            });
+                            $(lb.modal_content).on('click', '.modal-footer a#closeit', function(e) {
+                                e.preventDefault();
+                                lb.close();
+                            });
+                        }
+                    });
+                });
+
+            });
+</script>
+{% endif %}
+{% if page.title contains 'Social Media' %}
+{% assign z1 = '{{link}}' %}
+{% assign z2 = '{{image}}' %}
+{% assign z3 = '{{likes}} %}
+{% assign z4 = '{{caption}}' %}
+<script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/js/pongstagr.am.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/js/fb.js" | prepend: site.baseurl }}"></script>
+<script>
+$(document).ready(function () {
+ 
+  $('#profile').pongstgrm({
+    accessId:     '43409428',
+    accessToken:  '43409428.0240480.43499bdc6eea47efb161938386fb5ad4',
+    show: 'profile',
+    picture_size: '96',                  // sets profile picture to 64x64 pixels, no need to add px
+    // profile_bg_img:   '/path/to/image.jpg', // image url
+    profile_bg_color: '#FFFFFF'             // background color
+  });
+ 
+});
+</script>
+<script>
+$(document).ready(function () {
+ 
+  $('#selector').pongstgrm({
+    accessId:     '43409428',
+    accessToken:  '43409428.0240480.43499bdc6eea47efb161938386fb5ad4',
+    show: 'recent',
+    profile_bg_color: '#FFFFFFF'             // background color
+  });
+
+});
+</script>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function(){
+        $('#facebook_wall').facebook_wall({
+            id: 'AYpiZxek6PQ',
+            access_token: 'EAACqhrmHJ8cBACh7mYZBZATzZAh39ZBdmX5XeR4UCQ5Yb3JcS2VVgsXJGb8rG8Naja8HjvgEZBpq1afuFZBbYgeImpYXywnoV3DezmvP2RNM5sF2hIweXmr7i5zPANYbMmZA93N1KMmNjOZB1PPQ11JYj9XEVMaAQPybVLyjdVGyWwZDZD',
+            limit: 10
+        });
+    });
+})(jQuery);
+</script>
+{% endif %}

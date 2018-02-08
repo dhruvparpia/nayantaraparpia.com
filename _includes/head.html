@@ -1,0 +1,32 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <!--[if lte IE 8]><script src="{{ "/js/ie/html5shiv.js" | prepend: site.baseurl }}"></script><![endif]-->
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}" />
+  <link rel="stylesheet" href="{{ "/css/lightgallery.min.css" | prepend: site.baseurl }}" />
+  <link rel="stylesheet" href="{{ "/css/animate.css" | prepend: site.baseurl }}" />
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700" rel="stylesheet" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="{{ "/css/ie8.css" | prepend: site.baseurl }}" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="{{ "/css/ie9.css" | prepend: site.baseurl }}" /><![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="icon" type="image/png" href="/favicon/favicon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  {% if page.title contains 'Social Media' %}
+  <link rel="stylesheet" href="{{ "/css/fb.css" | prepend: site.baseurl }}"/>
+  <link href="{{ "/css/bootstrap.css" | prepend: site.baseurl }}" rel="stylesheet"/>
+  <link href="{{ "/css/pongstagr.am.css" | prepend: site.baseurl }}" rel="stylesheet"/>
+  {% endif %}
+  {% if page.title contains 'Gallery' %}
+  <link rel="stylesheet" href="{{ "/css/ekko.css" | prepend: site.baseurl }}"/>
+  <link href="{{ "/css/bootstrap.css" | prepend: site.baseurl }}" rel="stylesheet"/>
+  {% endif %}
+  {% if page.title contains 'Videos' %}
+  <link href="{{ "/css/bootstrap.css" | prepend: site.baseurl }}" rel="stylesheet"/>
+  {% endif %}
+  {% include analytics.html %}
+</head>
